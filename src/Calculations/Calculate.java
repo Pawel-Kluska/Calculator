@@ -26,6 +26,11 @@ public class Calculate {
         return val;
     }
 
+    public boolean isSign(){
+        if(operation == '+' || operation == '-' || operation == 'X' || operation == '/') return true;
+        else return false;
+    }
+
     public double negate(double d){
         return(-d);
     }

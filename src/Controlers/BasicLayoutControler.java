@@ -4,6 +4,7 @@ import Calculations.Calculate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
@@ -15,7 +16,10 @@ public class BasicLayoutControler {
     @FXML
     private TextField field;
     @FXML
-    private Button N1, N2, N3, N4, N5, N6, N7, N8, N9;
+    private Button N0, N1, N2, N3, N4, N5, N6, N7, N8, N9;
+    @FXML
+    private Label operationImage, memorySign;
+
     boolean isOperation = false;
     boolean pipe = false;
     boolean isComma = false;
@@ -33,6 +37,7 @@ public class BasicLayoutControler {
         else if(e.getSource() == N7) field.appendText("7");
         else if(e.getSource() == N8) field.appendText("8");
         else if(e.getSource() == N9) field.appendText("9");
+        else if(e.getSource() == N0) field.appendText("0");
     }
 
     private void setNumberCalculator(){
@@ -53,6 +58,7 @@ public class BasicLayoutControler {
         cal.setOperation('+');
         isOperation=true;
         isComma = false;
+        operationImage.setText("+");
 
     }
 
@@ -61,6 +67,7 @@ public class BasicLayoutControler {
         cal.setOperation('-');
         isOperation=true;
         isComma = false;
+        operationImage.setText("-");
     }
 
     public void mul(ActionEvent e) {
@@ -68,6 +75,7 @@ public class BasicLayoutControler {
         cal.setOperation('X');
         isOperation=true;
         isComma = false;
+        operationImage.setText("*");
     }
 
 
@@ -76,6 +84,7 @@ public class BasicLayoutControler {
         cal.setOperation('/');
         isOperation=true;
         isComma = false;
+        operationImage.setText("/");
     }
 
     public void evaluate(ActionEvent e) {
@@ -113,7 +122,7 @@ public class BasicLayoutControler {
     }
 
     public void clear(ActionEvent e) {
-        if(!isOperation) field.setText("");
+        if(!isOperation) field.setText("0");
     }
 
     public void oneDigitRemove(ActionEvent e) {
@@ -140,18 +149,30 @@ public class BasicLayoutControler {
     public void addM(ActionEvent e){
         double number = Double.parseDouble(field.getText());
         cal.addM(number);
+        memorySign.setText("M");
     }
 
     public void subM(ActionEvent e){
         double number = Double.parseDouble(field.getText());
         cal.subM(number);
+        memorySign.setText("M");
     }
 
     public void readM(ActionEvent e){
-        field.setText(""+cal.getM());
+        double num = cal.getM();
+
+        if(num == (int) num) {
+            field.setText(""+((int) num));
+            isComma = false;
+        }
+        else {
+            field.setText("" + num);
+            isComma = true;
+        }
     }
 
     public void clearM(ActionEvent e) {
         cal.clearM();
+        memorySign.setText("");
     }
 }
