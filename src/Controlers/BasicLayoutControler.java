@@ -11,9 +11,9 @@ public class BasicLayoutControler {
     private static Calculate cal = new Calculate();
 
     @FXML
-    TextField field;
+    private TextField field;
     @FXML
-    Button N1, N2, N3, N4, N5, N6, N7, N8, N9;
+    private Button N1, N2, N3, N4, N5, N6, N7, N8, N9;
 
     public void getNumber(ActionEvent e){
         if(e.getSource() == N1) field.appendText("1");
@@ -26,5 +26,7 @@ public class BasicLayoutControler {
         if(e.getSource() == N8) field.appendText("8");
         if(e.getSource() == N9) field.appendText("9");
     }
+
+
 
 }
