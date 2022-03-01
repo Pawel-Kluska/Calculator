@@ -5,6 +5,7 @@ public class Calculate {
     private char operation;
     private double firstNumber;
     private double secondNumber;
+    private double memory;
 
     public Calculate(){
 
@@ -33,6 +34,21 @@ public class Calculate {
         return(Math.sqrt(d));
     }
 
+    public double getM(){
+        return memory;
+    }
+
+    public void addM(double m){
+        memory+=m;
+    }
+
+    public void subM(double m){
+        memory-=m;
+    }
+
+    public void clearM(){
+        memory = 0;
+    }
 
     public void setOperation(char operation) {
         this.operation = operation;

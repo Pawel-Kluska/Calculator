@@ -27,12 +27,12 @@
       <Button layoutX="175.0" layoutY="425.0" mnemonicParsing="false" onAction="#comma" prefHeight="50.0" prefWidth="50.0" text="." />
       <Button layoutX="250.0" layoutY="425.0" mnemonicParsing="false" onAction="#evaluate" prefHeight="50.0" prefWidth="50.0" text="=" />
       <Button layoutX="324.0" layoutY="425.0" mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="50.0" text="+" />
-      <Button layoutX="25.0" layoutY="125.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="MC" />
-      <Button layoutX="100.0" layoutY="125.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="MR" />
-      <Button layoutX="175.0" layoutY="125.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="M-" />
-      <Button layoutX="250.0" layoutY="125.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="M+" />
+      <Button layoutX="25.0" layoutY="125.0" mnemonicParsing="false" onAction="#clearM" prefHeight="50.0" prefWidth="50.0" text="MC" />
+      <Button layoutX="100.0" layoutY="125.0" mnemonicParsing="false" onAction="#readM" prefHeight="50.0" prefWidth="50.0" text="MR" />
+      <Button layoutX="175.0" layoutY="125.0" mnemonicParsing="false" onAction="#subM" prefHeight="50.0" prefWidth="50.0" text="M-" />
+      <Button layoutX="250.0" layoutY="125.0" mnemonicParsing="false" onAction="#addM" prefHeight="50.0" prefWidth="50.0" text="M+" />
       <Button layoutX="325.0" layoutY="200.0" mnemonicParsing="false" onAction="#div" prefHeight="50.0" prefWidth="50.0" text="/" />
-      <TextField fx:id="field" layoutX="25.0" layoutY="29.0" prefHeight="65.0" prefWidth="350.0" />
+      <TextField fx:id="field" layoutX="25.0" layoutY="29.0" prefHeight="65.0" prefWidth="350.0" promptText="0" />
       <CheckBox layoutX="358.0" layoutY="101.0" mnemonicParsing="false" />
       <Label layoutX="295.0" layoutY="101.0" text="Dark Mode" />
       <Button layoutX="325.0" layoutY="125.0" mnemonicParsing="false" onAction="#sqrt" prefHeight="50.0" prefWidth="50.0" text="sqrt" />

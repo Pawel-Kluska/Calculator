@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import javax.swing.*;
+
 public class BasicLayoutControler {
 
     private final static Calculate cal = new Calculate();
@@ -20,6 +22,7 @@ public class BasicLayoutControler {
 
     public void getNumber(ActionEvent e){
 
+        if(field.getText().equals("0")) field.setText("");
         if(isOperation) field.setText(""); isOperation=false;
         if(e.getSource() == N1) field.appendText("1");
         else if(e.getSource() == N2) field.appendText("2");
@@ -32,7 +35,7 @@ public class BasicLayoutControler {
         else if(e.getSource() == N9) field.appendText("9");
     }
 
-    public void add(ActionEvent e){
+    private void setNumberCalculator(){
         if(pipe) {
             cal.setSecondNumber(Double.parseDouble(field.getText()));
             cal.setFirstNumber(cal.ev());
@@ -43,63 +46,55 @@ public class BasicLayoutControler {
             else cal.setFirstNumber(Double.parseDouble(field.getText()));
             pipe = true;
         }
+    }
+
+    public void add(ActionEvent e){
+        setNumberCalculator();
         cal.setOperation('+');
         isOperation=true;
+        isComma = false;
 
     }
 
     public void sub(ActionEvent e) {
-        if(pipe) {
-            cal.setSecondNumber(Double.parseDouble(field.getText()));
-            cal.setFirstNumber(cal.ev());
-            field.setText("" + cal.getFirstNumber());
-        }
-        else {
-            if (field.getText().equals("")) cal.setFirstNumber(0);
-            else cal.setFirstNumber(Double.parseDouble(field.getText()));
-            pipe = true;
-        }
+        setNumberCalculator();
         cal.setOperation('-');
         isOperation=true;
+        isComma = false;
     }
 
     public void mul(ActionEvent e) {
-        if(pipe) {
-            cal.setSecondNumber(Double.parseDouble(field.getText()));
-            cal.setFirstNumber(cal.ev());
-            field.setText("" + cal.getFirstNumber());
-        }
-        else {
-            if (field.getText().equals("")) cal.setFirstNumber(0);
-            else cal.setFirstNumber(Double.parseDouble(field.getText()));
-            pipe = true;
-        }
+        setNumberCalculator();
         cal.setOperation('X');
         isOperation=true;
+        isComma = false;
     }
 
 
     public void div(ActionEvent e) {
-        if(pipe) {
-            cal.setSecondNumber(Double.parseDouble(field.getText()));
-            cal.setFirstNumber(cal.ev());
-            field.setText("" + cal.getFirstNumber());
-        }
-        else {
-            if (field.getText().equals("")) cal.setFirstNumber(0);
-            else cal.setFirstNumber(Double.parseDouble(field.getText()));
-            pipe = true;
-        }
+        setNumberCalculator();
         cal.setOperation('/');
         isOperation=true;
+        isComma = false;
     }
 
     public void evaluate(ActionEvent e) {
-        if (field.getText().equals("")) cal.setSecondNumber(0);
-        else cal.setSecondNumber(Double.parseDouble(field.getText()));
-        field.setText("" + cal.ev());
+        cal.setSecondNumber(Double.parseDouble(field.getText()));
+
+        double num = cal.ev();
+
+        if(num == (int) num) {
+            field.setText(""+((int) num));
+            isComma = false;
+        }
+        else {
+            field.setText("" + num);
+            isComma = true;
+        }
+
         isOperation=true;
         pipe=false;
+
     }
 
     public void comma(ActionEvent e) {
@@ -108,7 +103,7 @@ public class BasicLayoutControler {
     }
 
     public void aclear(ActionEvent e) {
-        field.setText("");
+        field.setText("0");
         cal.setFirstNumber(0);
         cal.setSecondNumber(0);
 
@@ -138,5 +133,25 @@ public class BasicLayoutControler {
         double number = Double.parseDouble(field.getText());
         number = cal.sqrt(number);
         field.setText(""+number);
+    }
+
+    //Memory
+
+    public void addM(ActionEvent e){
+        double number = Double.parseDouble(field.getText());
+        cal.addM(number);
+    }
+
+    public void subM(ActionEvent e){
+        double number = Double.parseDouble(field.getText());
+        cal.subM(number);
+    }
+
+    public void readM(ActionEvent e){
+        field.setText(""+cal.getM());
+    }
+
+    public void clearM(ActionEvent e) {
+        cal.clearM();
     }
 }
