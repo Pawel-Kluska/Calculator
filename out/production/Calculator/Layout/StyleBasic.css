@@ -2,6 +2,7 @@
     -fx-background-color: linear-gradient(#E1E1E1, #B8B8B8);
     -fx-font-size: 15;
     -fx-font: Lucida Console;
+    -fx-border-color: #B8B8B8;
 }
 
 .root{

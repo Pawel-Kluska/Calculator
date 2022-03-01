@@ -7,8 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import javax.swing.*;
-
 public class BasicLayoutControler {
 
     private final static Calculate cal = new Calculate();
@@ -25,7 +23,6 @@ public class BasicLayoutControler {
     boolean isComma = false;
 
     public void getNumber(ActionEvent e){
-
         if(field.getText().equals("0")) field.setText("");
         if(isOperation) field.setText(""); isOperation=false;
         if(e.getSource() == N1) field.appendText("1");
@@ -40,20 +37,22 @@ public class BasicLayoutControler {
         else if(e.getSource() == N0) field.appendText("0");
     }
 
-    private void setNumberCalculator(){
-        if(pipe) {
+    private void setNumberCalculator() {
+        if (pipe) {
             cal.setSecondNumber(Double.parseDouble(field.getText()));
             cal.setFirstNumber(cal.ev());
-            field.setText("" + cal.getFirstNumber());
-        }
-        else {
+            if(cal.getFirstNumber() == (int) cal.getFirstNumber()) field.setText("" + (int) cal.getFirstNumber());
+            else field.setText("" + cal.getFirstNumber());
+
+        } else {
             if (field.getText().equals("")) cal.setFirstNumber(0);
             else cal.setFirstNumber(Double.parseDouble(field.getText()));
             pipe = true;
         }
+        cal.setOperation('!');
     }
 
-    public void add(ActionEvent e){
+    public void add(){
         setNumberCalculator();
         cal.setOperation('+');
         isOperation=true;
@@ -62,7 +61,7 @@ public class BasicLayoutControler {
 
     }
 
-    public void sub(ActionEvent e) {
+    public void sub() {
         setNumberCalculator();
         cal.setOperation('-');
         isOperation=true;
@@ -70,7 +69,7 @@ public class BasicLayoutControler {
         operationImage.setText("-");
     }
 
-    public void mul(ActionEvent e) {
+    public void mul() {
         setNumberCalculator();
         cal.setOperation('X');
         isOperation=true;
@@ -79,7 +78,7 @@ public class BasicLayoutControler {
     }
 
 
-    public void div(ActionEvent e) {
+    public void div() {
         setNumberCalculator();
         cal.setOperation('/');
         isOperation=true;
@@ -87,7 +86,7 @@ public class BasicLayoutControler {
         operationImage.setText("/");
     }
 
-    public void evaluate(ActionEvent e) {
+    public void evaluate() {
         cal.setSecondNumber(Double.parseDouble(field.getText()));
 
         double num = cal.ev();
@@ -106,39 +105,40 @@ public class BasicLayoutControler {
 
     }
 
-    public void comma(ActionEvent e) {
+    public void comma() {
         if(!isComma) field.appendText(".");
         isComma = true;
     }
 
-    public void aclear(ActionEvent e) {
+    public void aclear() {
         field.setText("0");
         cal.setFirstNumber(0);
         cal.setSecondNumber(0);
-
+        operationImage.setText("");
         isOperation = false;
         pipe = false;
         isComma = false;
     }
 
-    public void clear(ActionEvent e) {
+    public void clear() {
         if(!isOperation) field.setText("0");
+        operationImage.setText("");
     }
 
-    public void oneDigitRemove(ActionEvent e) {
+    public void oneDigitRemove() {
         String string = field.getText();
-        StringBuffer sb= new StringBuffer(string);
+        StringBuilder sb= new StringBuilder(string);
         sb.deleteCharAt(sb.length()-1);
         field.setText(sb.toString());
     }
 
-    public void changeSign(ActionEvent e){
+    public void changeSign(){
         double number = Double.parseDouble(field.getText());
         number = cal.negate(number);
         field.setText(""+number);
     }
 
-    public void sqrt(ActionEvent e) {
+    public void sqrt() {
         double number = Double.parseDouble(field.getText());
         number = cal.sqrt(number);
         field.setText(""+number);
@@ -146,19 +146,19 @@ public class BasicLayoutControler {
 
     //Memory
 
-    public void addM(ActionEvent e){
+    public void addM(){
         double number = Double.parseDouble(field.getText());
         cal.addM(number);
         memorySign.setText("M");
     }
 
-    public void subM(ActionEvent e){
+    public void subM(){
         double number = Double.parseDouble(field.getText());
         cal.subM(number);
         memorySign.setText("M");
     }
 
-    public void readM(ActionEvent e){
+    public void readM(){
         double num = cal.getM();
 
         if(num == (int) num) {
@@ -171,7 +171,7 @@ public class BasicLayoutControler {
         }
     }
 
-    public void clearM(ActionEvent e) {
+    public void clearM() {
         cal.clearM();
         memorySign.setText("");
     }
