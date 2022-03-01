@@ -14,7 +14,9 @@ public class BasicLayoutControler {
     private TextField field;
     @FXML
     private Button N1, N2, N3, N4, N5, N6, N7, N8, N9;
-    boolean isOperation;
+    boolean isOperation = false;
+    boolean pipe = false;
+    boolean isComma = false;
 
     public void getNumber(ActionEvent e){
 
@@ -31,31 +33,63 @@ public class BasicLayoutControler {
     }
 
     public void add(ActionEvent e){
-        if (field.getText().equals("")) cal.setFirstNumber(0);
-        else cal.setFirstNumber(Double.parseDouble(field.getText()));
+        if(pipe) {
+            cal.setSecondNumber(Double.parseDouble(field.getText()));
+            cal.setFirstNumber(cal.ev());
+            field.setText("" + cal.getFirstNumber());
+        }
+        else {
+            if (field.getText().equals("")) cal.setFirstNumber(0);
+            else cal.setFirstNumber(Double.parseDouble(field.getText()));
+            pipe = true;
+        }
         cal.setOperation('+');
         isOperation=true;
 
     }
 
     public void sub(ActionEvent e) {
-        if (field.getText().equals("")) cal.setFirstNumber(0);
-        else cal.setFirstNumber(Double.parseDouble(field.getText()));
+        if(pipe) {
+            cal.setSecondNumber(Double.parseDouble(field.getText()));
+            cal.setFirstNumber(cal.ev());
+            field.setText("" + cal.getFirstNumber());
+        }
+        else {
+            if (field.getText().equals("")) cal.setFirstNumber(0);
+            else cal.setFirstNumber(Double.parseDouble(field.getText()));
+            pipe = true;
+        }
         cal.setOperation('-');
         isOperation=true;
     }
 
     public void mul(ActionEvent e) {
-        if (field.getText().equals("")) cal.setFirstNumber(0);
-        else cal.setFirstNumber(Double.parseDouble(field.getText()));
+        if(pipe) {
+            cal.setSecondNumber(Double.parseDouble(field.getText()));
+            cal.setFirstNumber(cal.ev());
+            field.setText("" + cal.getFirstNumber());
+        }
+        else {
+            if (field.getText().equals("")) cal.setFirstNumber(0);
+            else cal.setFirstNumber(Double.parseDouble(field.getText()));
+            pipe = true;
+        }
         cal.setOperation('X');
         isOperation=true;
     }
 
 
     public void div(ActionEvent e) {
-        if (field.getText().equals("")) cal.setFirstNumber(0);
-        else cal.setFirstNumber(Double.parseDouble(field.getText()));
+        if(pipe) {
+            cal.setSecondNumber(Double.parseDouble(field.getText()));
+            cal.setFirstNumber(cal.ev());
+            field.setText("" + cal.getFirstNumber());
+        }
+        else {
+            if (field.getText().equals("")) cal.setFirstNumber(0);
+            else cal.setFirstNumber(Double.parseDouble(field.getText()));
+            pipe = true;
+        }
         cal.setOperation('/');
         isOperation=true;
     }
@@ -65,11 +99,44 @@ public class BasicLayoutControler {
         else cal.setSecondNumber(Double.parseDouble(field.getText()));
         field.setText("" + cal.ev());
         isOperation=true;
+        pipe=false;
     }
 
-    public void sqrt(ActionEvent e){
-
+    public void comma(ActionEvent e) {
+        if(!isComma) field.appendText(".");
+        isComma = true;
     }
 
+    public void aclear(ActionEvent e) {
+        field.setText("");
+        cal.setFirstNumber(0);
+        cal.setSecondNumber(0);
 
+        isOperation = false;
+        pipe = false;
+        isComma = false;
+    }
+
+    public void clear(ActionEvent e) {
+        if(!isOperation) field.setText("");
+    }
+
+    public void oneDigitRemove(ActionEvent e) {
+        String string = field.getText();
+        StringBuffer sb= new StringBuffer(string);
+        sb.deleteCharAt(sb.length()-1);
+        field.setText(sb.toString());
+    }
+
+    public void changeSign(ActionEvent e){
+        double number = Double.parseDouble(field.getText());
+        number = cal.negate(number);
+        field.setText(""+number);
+    }
+
+    public void sqrt(ActionEvent e) {
+        double number = Double.parseDouble(field.getText());
+        number = cal.sqrt(number);
+        field.setText(""+number);
+    }
 }

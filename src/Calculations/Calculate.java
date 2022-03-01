@@ -14,7 +14,6 @@ public class Calculate {
         return operation;
     }
 
-
     public double ev(){
         double val = 0;
         if(operation == '+') val = firstNumber + secondNumber;
@@ -25,6 +24,15 @@ public class Calculate {
         secondNumber = 0;
         return val;
     }
+
+    public double negate(double d){
+        return(-d);
+    }
+
+    public double sqrt(double d){
+        return(Math.sqrt(d));
+    }
+
 
     public void setOperation(char operation) {
         this.operation = operation;
