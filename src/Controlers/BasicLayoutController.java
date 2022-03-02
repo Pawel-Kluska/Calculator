@@ -3,11 +3,21 @@ package Controlers;
 import Calculations.Calculate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
-public class BasicLayoutControler {
+import java.io.IOException;
+
+public class BasicLayoutController {
 
     private final static Calculate cal = new Calculate();
 
@@ -17,10 +27,13 @@ public class BasicLayoutControler {
     private Button N0, N1, N2, N3, N4, N5, N6, N7, N8, N9;
     @FXML
     private Label operationImage, memorySign;
+    @FXML
+    Button buttonStyle;
+    boolean isDefault = true;
 
-    boolean isOperation = false;
-    boolean pipe = false;
-    boolean isComma = false;
+    private boolean isOperation = false;
+    private boolean pipe = false;
+    private boolean isComma = false;
 
     public void getNumber(ActionEvent e){
         if(field.getText().equals("0")) field.setText("");
@@ -35,6 +48,22 @@ public class BasicLayoutControler {
         else if(e.getSource() == N8) field.appendText("8");
         else if(e.getSource() == N9) field.appendText("9");
         else if(e.getSource() == N0) field.appendText("0");
+    }
+
+    public void getNumberFromKeyboard(KeyEvent keyEvent){
+
+        if(field.getText().equals("0")) field.setText("");
+        if(isOperation) field.setText(""); isOperation=false;
+        if(keyEvent.getCode() == KeyCode.NUMPAD1 || keyEvent.getCode() == KeyCode.DIGIT1) field.appendText("1");
+        else if(keyEvent.getCode() == KeyCode.NUMPAD2 || keyEvent.getCode() == KeyCode.DIGIT2) field.appendText("2");
+        else if(keyEvent.getCode() == KeyCode.NUMPAD3 || keyEvent.getCode() == KeyCode.DIGIT3) field.appendText("3");
+        else if(keyEvent.getCode() == KeyCode.NUMPAD4 || keyEvent.getCode() == KeyCode.DIGIT4) field.appendText("4");
+        else if(keyEvent.getCode() == KeyCode.NUMPAD5 || keyEvent.getCode() == KeyCode.DIGIT5) field.appendText("5");
+        else if(keyEvent.getCode() == KeyCode.NUMPAD6 || keyEvent.getCode() == KeyCode.DIGIT6) field.appendText("6");
+        else if(keyEvent.getCode() == KeyCode.NUMPAD7 || keyEvent.getCode() == KeyCode.DIGIT7) field.appendText("7");
+        else if(keyEvent.getCode() == KeyCode.NUMPAD8 || keyEvent.getCode() == KeyCode.DIGIT8) field.appendText("8");
+        else if(keyEvent.getCode() == KeyCode.NUMPAD9 || keyEvent.getCode() == KeyCode.DIGIT9) field.appendText("9");
+        else if(keyEvent.getCode() == KeyCode.NUMPAD0 || keyEvent.getCode() == KeyCode.DIGIT0) field.appendText("0");
     }
 
     private void setNumberCalculator() {
@@ -93,11 +122,9 @@ public class BasicLayoutControler {
 
         if(num == (int) num) {
             field.setText(""+((int) num));
-            isComma = false;
         }
         else {
             field.setText("" + num);
-            isComma = true;
         }
 
         isOperation=true;
@@ -106,7 +133,7 @@ public class BasicLayoutControler {
     }
 
     public void comma() {
-        if(!isComma) field.appendText(".");
+        if(!isComma && !isOperation) field.appendText(".");
         isComma = true;
     }
 
@@ -135,7 +162,13 @@ public class BasicLayoutControler {
     public void changeSign(){
         double number = Double.parseDouble(field.getText());
         number = cal.negate(number);
-        field.setText(""+number);
+
+        if(number == (int) number) {
+            field.setText(""+((int) number));
+        }
+        else {
+            field.setText("" + number);
+        }
     }
 
     public void sqrt() {
@@ -175,4 +208,5 @@ public class BasicLayoutControler {
         cal.clearM();
         memorySign.setText("");
     }
+
 }
