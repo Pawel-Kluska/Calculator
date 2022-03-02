@@ -3,11 +3,11 @@ package Controlers;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 
-public class KeyHandler implements EventHandler<KeyEvent> {
+public class KeyHandlerBasic implements EventHandler<KeyEvent> {
 
     BasicLayoutController controller;
 
-    public KeyHandler(BasicLayoutController controller){
+    public KeyHandlerBasic(BasicLayoutController controller){
         this.controller = controller;
     }
 

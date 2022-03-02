@@ -1,7 +1,8 @@
-package BasicLauout;
+package Main;
 
 import Controlers.BasicLayoutController;
-import Controlers.KeyHandler;
+import Controlers.KeyHandlerBasic;
+import Controlers.WriteModeController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,15 +20,15 @@ public class Start extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../BasicLauout/BasicLayout.fxml"));
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/FXML/BasicLayout.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/FXML/WriteLayout.fxml"));
         Parent root = loader.load();
-        BasicLayoutController controller = loader.getController();
-
+       // BasicLayoutController controller = loader.getController();
+        WriteModeController controller = loader.getController();
         Scene scene = new Scene(root);
-        scene.setOnKeyPressed(new KeyHandler(controller));
+       // scene.setOnKeyPressed(new KeyHandlerBasic(controller));
 
-
-        scene.getStylesheets().add(getClass().getResource("StyleBasic.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("../Resources/Styles/StyleBasic.css").toExternalForm());
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);

@@ -1,13 +1,13 @@
 package Calculations;
 
-public class Calculate {
+public class CalculateBasic {
 
     private char operation;
     private double firstNumber;
     private double secondNumber;
     private double memory;
 
-    public Calculate(){
+    public CalculateBasic(){
 
     }
 
