@@ -1,12 +1,11 @@
-package Controlers;
+package Layout;
 
+import Controlers.BasicLayoutController;
+import Controlers.KeyHandler;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,7 +19,7 @@ public class Start extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("BasicLayout.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Layout/BasicLayout.fxml"));
         Parent root = loader.load();
         BasicLayoutController controller = loader.getController();
 

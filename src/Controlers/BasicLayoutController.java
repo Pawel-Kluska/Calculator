@@ -116,6 +116,7 @@ public class BasicLayoutController {
     }
 
     public void evaluate() {
+        
         cal.setSecondNumber(Double.parseDouble(field.getText()));
 
         double num = cal.ev();
