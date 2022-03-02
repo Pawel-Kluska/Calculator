@@ -20,13 +20,12 @@ public class Start extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/FXML/BasicLayout.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/FXML/WriteLayout.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/FXML/BasicLayout.fxml"));
+
         Parent root = loader.load();
-       // BasicLayoutController controller = loader.getController();
-        WriteModeController controller = loader.getController();
+        BasicLayoutController controller = loader.getController();
         Scene scene = new Scene(root);
-       // scene.setOnKeyPressed(new KeyHandlerBasic(controller));
+        scene.setOnKeyPressed(new KeyHandlerBasic(controller));
 
         scene.getStylesheets().add(getClass().getResource("../Resources/Styles/StyleBasic.css").toExternalForm());
 

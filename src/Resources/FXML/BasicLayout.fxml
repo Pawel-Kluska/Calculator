@@ -35,5 +35,7 @@
       <Button layoutX="325.0" layoutY="125.0" mnemonicParsing="false" onAction="#sqrt" prefHeight="50.0" prefWidth="50.0" text="sqrt" />
       <Label fx:id="operationImage" layoutX="360.0" layoutY="30.0" prefHeight="18.0" prefWidth="15.0" />
       <Label fx:id="memorySign" layoutX="30.0" layoutY="30.0" prefHeight="18.0" prefWidth="15.0" />
+      <Button layoutX="360.0" layoutY="102.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeSceneToWrite" prefHeight="15.0" prefWidth="15.0" />
+      <Label layoutX="285.0" layoutY="101.0" text="Switch mode" />
    </children>
 </AnchorPane>

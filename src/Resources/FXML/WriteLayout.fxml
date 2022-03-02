@@ -19,7 +19,7 @@
       <Button fx:id="N2" layoutX="100.0" layoutY="271.0" mnemonicParsing="false" onAction="#getNumber" prefHeight="50.0" prefWidth="50.0" text="2" />
       <Button fx:id="N3" layoutX="175.0" layoutY="271.0" mnemonicParsing="false" onAction="#getNumber" prefHeight="50.0" prefWidth="50.0" text="3" />
       <Button fx:id="N0" layoutX="250.0" layoutY="271.0" mnemonicParsing="false" onAction="#getNumber" prefHeight="50.0" prefWidth="50.0" text="0" />
-      <TextField fx:id="field" alignment="CENTER_RIGHT" disable="true" layoutX="25.0" layoutY="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="66.0" prefWidth="500.0" />
+      <TextField fx:id="field" alignment="CENTER_RIGHT" disable="true" layoutX="25.0" layoutY="25.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="66.0" prefWidth="500.0" />
       <Label fx:id="operationImage" layoutX="360.0" layoutY="30.0" prefHeight="18.0" prefWidth="15.0" />
       <Label fx:id="memorySign" layoutX="30.0" layoutY="30.0" prefHeight="18.0" prefWidth="15.0" />
       <Button fx:id="O2" layoutX="325.0" layoutY="121.0" mnemonicParsing="false" onAction="#getOperator" prefHeight="50.0" prefWidth="50.0" text="-" />
@@ -31,5 +31,7 @@
       <Button fx:id="O4" layoutX="325.0" layoutY="271.0" mnemonicParsing="false" onAction="#getOperator" prefHeight="50.0" prefWidth="50.0" text="/" />
       <Button layoutX="400.0" layoutY="271.0" mnemonicParsing="false" onAction="#evaluate" prefHeight="50.0" prefWidth="50.0" text="=" />
       <Button layoutX="475.0" layoutY="271.0" mnemonicParsing="false" onAction="#allClear" prefHeight="50.0" prefWidth="50.0" text="AC" />
+      <Button layoutX="509.0" layoutY="97.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeSceneToBasic" prefHeight="15.0" prefWidth="15.0" />
+      <Label layoutX="434.0" layoutY="96.0" text="Switch mode" />
    </children>
 </AnchorPane>
