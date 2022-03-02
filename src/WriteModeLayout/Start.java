@@ -1,4 +1,4 @@
-package Layout;
+package WriteModeLayout;
 
 import Controlers.BasicLayoutController;
 import Controlers.KeyHandler;
@@ -19,7 +19,7 @@ public class Start extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Layout/BasicLayout.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../BasicLauout/BasicLayout.fxml"));
         Parent root = loader.load();
         BasicLayoutController controller = loader.getController();
 
@@ -30,6 +30,8 @@ public class Start extends Application {
         scene.getStylesheets().add(getClass().getResource("StyleBasic.css").toExternalForm());
 
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Calculator");
         primaryStage.show();
     }
 
