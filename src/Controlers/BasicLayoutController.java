@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -16,54 +15,38 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class BasicLayoutController {
+public class BasicLayoutController extends ParentController {
 
     private final static CalculateBasic cal = new CalculateBasic();
 
     @FXML
     private TextField field;
-    @FXML
-    private Button N0, N1, N2, N3, N4, N5, N6, N7, N8, N9;
+
     @FXML
     private Label operationImage, memorySign;
-    @FXML
-    Button buttonStyle;
-    boolean isDefault = true;
 
     private boolean isOperation = false;
     private boolean pipe = false;
     private boolean isComma = false;
 
+    public boolean isOperation() {
+        return isOperation;
+    }
+
+    public void setOperation(boolean operation) {
+        isOperation = operation;
+    }
+
+    public TextField getField() {
+        return field;
+    }
+
     public void getNumber(ActionEvent e){
         if(field.getText().equals("0")) field.setText("");
         if(isOperation) field.setText(""); isOperation=false;
-        if(e.getSource() == N1) field.appendText("1");
-        else if(e.getSource() == N2) field.appendText("2");
-        else if(e.getSource() == N3) field.appendText("3");
-        else if(e.getSource() == N4) field.appendText("4");
-        else if(e.getSource() == N5) field.appendText("5");
-        else if(e.getSource() == N6) field.appendText("6");
-        else if(e.getSource() == N7) field.appendText("7");
-        else if(e.getSource() == N8) field.appendText("8");
-        else if(e.getSource() == N9) field.appendText("9");
-        else if(e.getSource() == N0) field.appendText("0");
+        printNumber(e);
     }
 
-    public void getNumberFromKeyboard(KeyEvent keyEvent){
-
-        if(field.getText().equals("0")) field.setText("");
-        if(isOperation) field.setText(""); isOperation=false;
-        if(keyEvent.getCode() == KeyCode.NUMPAD1 || keyEvent.getCode() == KeyCode.DIGIT1) field.appendText("1");
-        else if(keyEvent.getCode() == KeyCode.NUMPAD2 || keyEvent.getCode() == KeyCode.DIGIT2) field.appendText("2");
-        else if(keyEvent.getCode() == KeyCode.NUMPAD3 || keyEvent.getCode() == KeyCode.DIGIT3) field.appendText("3");
-        else if(keyEvent.getCode() == KeyCode.NUMPAD4 || keyEvent.getCode() == KeyCode.DIGIT4) field.appendText("4");
-        else if(keyEvent.getCode() == KeyCode.NUMPAD5 || keyEvent.getCode() == KeyCode.DIGIT5) field.appendText("5");
-        else if(keyEvent.getCode() == KeyCode.NUMPAD6 || keyEvent.getCode() == KeyCode.DIGIT6) field.appendText("6");
-        else if(keyEvent.getCode() == KeyCode.NUMPAD7 || keyEvent.getCode() == KeyCode.DIGIT7) field.appendText("7");
-        else if(keyEvent.getCode() == KeyCode.NUMPAD8 || keyEvent.getCode() == KeyCode.DIGIT8) field.appendText("8");
-        else if(keyEvent.getCode() == KeyCode.NUMPAD9 || keyEvent.getCode() == KeyCode.DIGIT9) field.appendText("9");
-        else if(keyEvent.getCode() == KeyCode.NUMPAD0 || keyEvent.getCode() == KeyCode.DIGIT0) field.appendText("0");
-    }
 
     private void setNumberCalculator() {
         if (pipe) {
@@ -120,24 +103,19 @@ public class BasicLayoutController {
 
         double num = cal.ev();
 
-        if(num == (int) num) {
-            field.setText(""+((int) num));
-        }
-        else {
-            field.setText("" + num);
-        }
+        setNormalized(num);
 
         isOperation=true;
         pipe=false;
 
     }
 
-    public void comma() {
+    public void addComma() {
         if(!isComma && !isOperation) field.appendText(".");
         isComma = true;
     }
 
-    public void aclear() {
+    public void allClear() {
         field.setText("0");
         cal.setFirstNumber(0);
         cal.setSecondNumber(0);
@@ -155,25 +133,21 @@ public class BasicLayoutController {
         String string = field.getText();
         StringBuilder sb= new StringBuilder(string);
         sb.deleteCharAt(sb.length()-1);
-        field.setText(sb.toString());
+        if(sb.toString().equals("")) field.setText("0");
+        else field.setText(sb.toString());
     }
 
     public void changeSign(){
         double number = Double.parseDouble(field.getText());
         number = cal.negate(number);
 
-        if(number == (int) number) {
-            field.setText(""+((int) number));
-        }
-        else {
-            field.setText("" + number);
-        }
+        setNormalized(number);
     }
 
     public void sqrt() {
         double number = Double.parseDouble(field.getText());
         number = cal.sqrt(number);
-        field.setText(""+number);
+        setNormalized(number);
     }
 
     //Memory

@@ -1,8 +1,5 @@
 package Calculations;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Stack;
 
 import static Calculations.InfixToPostfix.isOperator;
@@ -11,7 +8,7 @@ import static Calculations.InfixToPostfix.isOperator;
 public class PostfixCalculator {
 
 
-    public static double calculate(String postfixExpWithUnderscore){
+    public static double calculate(String postfixExpWithUnderscore) throws IllegalArgumentException{
         Stack<Double> operandStack = new Stack<>();
 
         boolean isUnderscore = false;
@@ -43,7 +40,7 @@ public class PostfixCalculator {
         return operandStack.pop();
     }
 
-    private static double evaluate(Double second, Double first, char operator) {
+    private static double evaluate(Double second, Double first, char operator) throws IllegalArgumentException {
         switch (operator){
             case '+':
                 return first+second;

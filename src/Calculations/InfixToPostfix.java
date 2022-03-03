@@ -7,7 +7,7 @@ public class InfixToPostfix {
     private final Stack<Character> operatorStack = new Stack<>();
 
 
-    public static boolean hasHigherPrecedence(Character first, Character second){
+    public static boolean hasHigherPrecedence(Character first, Character second) throws UnsupportedOperationException{
 
         if (first == null || second == null){
             throw new UnsupportedOperationException("The characters cannot be null!");
@@ -41,7 +41,7 @@ public class InfixToPostfix {
                 c==']';
     }
 
-    public String convertToPostfix(String infixExpression){
+    public String convertToPostfix(String infixExpression) throws IllegalArgumentException{
 
         final String enhanced = enhance(infixExpression);
 

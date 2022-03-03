@@ -21,9 +21,9 @@
       <Button fx:id="N3" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#getNumber" prefHeight="50.0" prefWidth="50.0" text="3" />
       <Button layoutX="325.0" layoutY="275.0" mnemonicParsing="false" onAction="#mul" prefHeight="50.0" prefWidth="50.0" text="X" />
       <Button layoutX="325.0" layoutY="350.0" mnemonicParsing="false" onAction="#sub" prefHeight="50.0" prefWidth="50.0" text="-" />
-      <Button layoutX="25.0" layoutY="425.0" mnemonicParsing="false" onAction="#aclear" prefHeight="50.0" prefWidth="50.0" text="AC" />
+      <Button layoutX="25.0" layoutY="425.0" mnemonicParsing="false" onAction="#allClear" prefHeight="50.0" prefWidth="50.0" text="AC" />
       <Button fx:id="N0" layoutX="100.0" layoutY="425.0" mnemonicParsing="false" onAction="#getNumber" prefHeight="50.0" prefWidth="50.0" text="0" />
-      <Button layoutX="175.0" layoutY="425.0" mnemonicParsing="false" onAction="#comma" prefHeight="50.0" prefWidth="50.0" text="." />
+      <Button layoutX="175.0" layoutY="425.0" mnemonicParsing="false" onAction="#addComma" prefHeight="50.0" prefWidth="50.0" text="." />
       <Button layoutX="250.0" layoutY="425.0" mnemonicParsing="false" onAction="#evaluate" prefHeight="50.0" prefWidth="50.0" text="=" />
       <Button layoutX="324.0" layoutY="425.0" mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="50.0" text="+" />
       <Button layoutX="25.0" layoutY="125.0" mnemonicParsing="false" onAction="#clearM" prefHeight="50.0" prefWidth="50.0" text="MC" />
@@ -31,11 +31,12 @@
       <Button layoutX="175.0" layoutY="125.0" mnemonicParsing="false" onAction="#subM" prefHeight="50.0" prefWidth="50.0" text="M-" />
       <Button layoutX="250.0" layoutY="125.0" mnemonicParsing="false" onAction="#addM" prefHeight="50.0" prefWidth="50.0" text="M+" />
       <Button layoutX="325.0" layoutY="200.0" mnemonicParsing="false" onAction="#div" prefHeight="50.0" prefWidth="50.0" text="/" />
-      <TextField fx:id="field" alignment="CENTER_RIGHT" disable="true" layoutX="25.0" layoutY="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="65.0" prefWidth="350.0" text="0" />
+      <TextField fx:id="field" alignment="CENTER_RIGHT" disable="true" layoutX="25.0" layoutY="25.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="65.0" prefWidth="350.0" text="0" />
       <Button layoutX="325.0" layoutY="125.0" mnemonicParsing="false" onAction="#sqrt" prefHeight="50.0" prefWidth="50.0" text="sqrt" />
       <Label fx:id="operationImage" layoutX="360.0" layoutY="30.0" prefHeight="18.0" prefWidth="15.0" />
       <Label fx:id="memorySign" layoutX="30.0" layoutY="30.0" prefHeight="18.0" prefWidth="15.0" />
       <Button layoutX="360.0" layoutY="102.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeSceneToWrite" prefHeight="15.0" prefWidth="15.0" />
       <Label layoutX="285.0" layoutY="101.0" text="Switch mode" />
+      <Label layoutX="25.0" layoutY="5.0" text="Basic Mode" />
    </children>
 </AnchorPane>
