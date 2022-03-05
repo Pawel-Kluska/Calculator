@@ -22,12 +22,19 @@ public class WriteModeController extends ParentController{
     @FXML
     private Button O1, O2, O3, O4, O5, O6, O7;
 
-    boolean isEvaluated=false;
+    private boolean isEvaluated=false;
 
+    public boolean isEvaluated() {
+        return isEvaluated;
+    }
 
     public void getNumber(ActionEvent e){
         if(isEvaluated) field.setText(""); isEvaluated=false;
         printNumber(e);
+    }
+
+    public void setEvaluated(boolean evaluated) {
+        isEvaluated = evaluated;
     }
 
     public void getOperator(ActionEvent e){
@@ -62,13 +69,20 @@ public class WriteModeController extends ParentController{
     }
 
     public void oneDigitRemove() {
+        try{
+        Integer.parseInt(field.getText());
+        }
+        catch (NumberFormatException e){
+            field.setText("");
+        }
         String string = field.getText();
         StringBuilder sb= new StringBuilder(string);
-        sb.deleteCharAt(sb.length()-1);
+        if(sb.length() > 0) sb.deleteCharAt(sb.length()-1);
         field.setText(sb.toString());
     }
 
     public void addComma(){
+        if (isEvaluated) field.setText("");
         field.appendText(".");
     }
 
@@ -76,6 +90,7 @@ public class WriteModeController extends ParentController{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/FXML/BasicLayout.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        scene.setOnKeyPressed(new KeyHandlerBasic(loader.getController()));
         scene.getStylesheets().add(getClass().getResource("../Resources/Styles/StyleBasic.css").toExternalForm());
         Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 

@@ -13,6 +13,10 @@ public abstract class ParentController {
     @FXML
     private Button N0, N1, N2, N3, N4, N5, N6, N7, N8, N9;
 
+        public TextField getField() {
+        return field;
+    }
+
         public abstract void getNumber(ActionEvent e);
 
         public abstract void evaluate();
@@ -44,9 +48,5 @@ public abstract class ParentController {
             else if(e.getSource() == N9) field.appendText("9");
             else if(e.getSource() == N0) field.appendText("0");
         }
-
-
-
-
 
 }

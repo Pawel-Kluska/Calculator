@@ -9,8 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,7 +25,6 @@ public class BasicLayoutController extends ParentController {
 
     private boolean isOperation = false;
     private boolean pipe = false;
-    private boolean isComma = false;
 
     public boolean isOperation() {
         return isOperation;
@@ -35,10 +32,6 @@ public class BasicLayoutController extends ParentController {
 
     public void setOperation(boolean operation) {
         isOperation = operation;
-    }
-
-    public TextField getField() {
-        return field;
     }
 
     public void getNumber(ActionEvent e){
@@ -52,8 +45,7 @@ public class BasicLayoutController extends ParentController {
         if (pipe) {
             cal.setSecondNumber(Double.parseDouble(field.getText()));
             cal.setFirstNumber(cal.ev());
-            if(cal.getFirstNumber() == (int) cal.getFirstNumber()) field.setText("" + (int) cal.getFirstNumber());
-            else field.setText("" + cal.getFirstNumber());
+            setNormalized(cal.getFirstNumber());
 
         } else {
             if (field.getText().equals("")) cal.setFirstNumber(0);
@@ -67,7 +59,6 @@ public class BasicLayoutController extends ParentController {
         setNumberCalculator();
         cal.setOperation('+');
         isOperation=true;
-        isComma = false;
         operationImage.setText("+");
 
     }
@@ -76,7 +67,6 @@ public class BasicLayoutController extends ParentController {
         setNumberCalculator();
         cal.setOperation('-');
         isOperation=true;
-        isComma = false;
         operationImage.setText("-");
     }
 
@@ -84,7 +74,6 @@ public class BasicLayoutController extends ParentController {
         setNumberCalculator();
         cal.setOperation('X');
         isOperation=true;
-        isComma = false;
         operationImage.setText("*");
     }
 
@@ -93,7 +82,6 @@ public class BasicLayoutController extends ParentController {
         setNumberCalculator();
         cal.setOperation('/');
         isOperation=true;
-        isComma = false;
         operationImage.setText("/");
     }
 
@@ -111,8 +99,7 @@ public class BasicLayoutController extends ParentController {
     }
 
     public void addComma() {
-        if(!isComma && !isOperation) field.appendText(".");
-        isComma = true;
+        if(!isDouble(field.getText()) && !isOperation) field.appendText(".");
     }
 
     public void allClear() {
@@ -122,7 +109,6 @@ public class BasicLayoutController extends ParentController {
         operationImage.setText("");
         isOperation = false;
         pipe = false;
-        isComma = false;
     }
 
     public void clear() {
@@ -167,14 +153,7 @@ public class BasicLayoutController extends ParentController {
     public void readM(){
         double num = cal.getM();
 
-        if(num == (int) num) {
-            field.setText(""+((int) num));
-            isComma = false;
-        }
-        else {
-            field.setText("" + num);
-            isComma = true;
-        }
+        setNormalized(num);
     }
 
     public void clearM() {
@@ -185,11 +164,29 @@ public class BasicLayoutController extends ParentController {
     public void changeSceneToWrite(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Resources/FXML/WriteLayout.fxml"));
         Parent root = loader.load();
+        WriteModeController controller = loader.getController();
         Scene scene = new Scene(root);
+        scene.setOnKeyPressed(new KeyHandlerWrite(controller));
         scene.getStylesheets().add(getClass().getResource("../Resources/Styles/StyleBasic.css").toExternalForm());
         Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void setNormalized(double number){
+        if(number == (int) number) {
+            field.setText(""+((int) number));
+        }
+        else {
+            field.setText("" + number);
+        }
+    }
+
+    public boolean isDouble(String num){
+       for(int i=0; i<num.length(); i++){
+           if(num.charAt(i) == '.') return true;
+       }
+       return false;
     }
 }
