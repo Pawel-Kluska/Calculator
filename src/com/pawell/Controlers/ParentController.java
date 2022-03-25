@@ -1,4 +1,4 @@
-package Controlers;
+package com.pawell.Controlers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

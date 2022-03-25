@@ -1,8 +1,7 @@
-package Main;
+package com.pawell.Main;
 
-import Controlers.BasicLayoutController;
-import Controlers.KeyHandlerBasic;
-import Controlers.WriteModeController;
+import com.pawell.Controlers.BasicLayoutController;
+import com.pawell.Controlers.KeyHandlerBasic;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

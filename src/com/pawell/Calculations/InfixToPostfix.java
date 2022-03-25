@@ -1,4 +1,4 @@
-package Calculations;
+package com.pawell.Calculations;
 
 import java.util.Stack;
 

@@ -1,4 +1,4 @@
-package Calculations;
+package com.pawell.Calculations;
 
 public class OnpAlgorithm {
 

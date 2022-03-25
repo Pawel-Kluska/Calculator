@@ -1,8 +1,8 @@
-package Calculations;
+package com.pawell.Calculations;
 
 import java.util.Stack;
 
-import static Calculations.InfixToPostfix.isOperator;
+import static com.pawell.Calculations.InfixToPostfix.isOperator;
 
 
 public class PostfixCalculator {

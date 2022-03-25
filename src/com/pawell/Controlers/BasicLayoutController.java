@@ -1,6 +1,6 @@
-package Controlers;
+package com.pawell.Controlers;
 
-import Calculations.CalculateBasic;
+import com.pawell.Calculations.CalculateBasic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -134,6 +134,7 @@ public class BasicLayoutController extends ParentController {
         double number = Double.parseDouble(field.getText());
         number = cal.sqrt(number);
         setNormalized(number);
+        operationImage.setText("");
     }
 
     //Memory

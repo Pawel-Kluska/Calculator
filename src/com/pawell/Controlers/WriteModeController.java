@@ -1,6 +1,6 @@
-package Controlers;
+package com.pawell.Controlers;
 
-import Calculations.OnpAlgorithm;
+import com.pawell.Calculations.OnpAlgorithm;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
